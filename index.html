@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Ragnar – Televizyonunu bağla</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#f4f3f0;--card:#ffffff;--tx:#14171c;--mut:#5d6470;--line:#dcdde0;--acc:#c98a1c;--accT:#14171c;--err:#c0353b;--ok:#2f7d4f;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0a0d12;--card:#12161d;--tx:#f3f1ec;--mut:#a3a9b3;--line:#262c36;--acc:#f0b23a;--accT:#0a0d12;--err:#ff8a8d;--ok:#6fd39b}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--tx);font-family:Manrope,system-ui,-apple-system,sans-serif;display:flex;justify-content:center}
+main{width:100%;max-width:440px;padding:36px 22px 40px}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:30px}
+.brand svg{width:34px;height:46px}
+.brand span{font-family:Oswald,Impact,sans-serif;font-weight:600;letter-spacing:.3em;font-size:20px}
+h1{font-size:28px;line-height:1.15;margin:0 0 8px;font-weight:800}
+.lead{color:var(--mut);margin:0 0 26px;line-height:1.5;font-size:15px}
+label{display:block;font-weight:700;font-size:14px;margin:0 0 8px}
+input{width:100%;font:inherit;font-size:16px;color:var(--tx);background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:14px 14px;outline:none}
+input:focus{border-color:var(--acc)}
+#code{font-family:Oswald,Impact,sans-serif;font-size:32px;letter-spacing:.35em;text-align:center;padding:12px}
+.f{margin-bottom:18px}
+.tabs{display:flex;background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:4px;margin:6px 0 18px}
+.tabs button{flex:1;border:0;background:transparent;color:var(--mut);font:inherit;font-weight:700;font-size:14px;padding:10px;border-radius:7px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--tx);color:var(--bg)}
+.hint{color:var(--mut);font-size:13px;margin-top:7px;line-height:1.45}
+#send{width:100%;border:0;border-radius:10px;padding:16px;font:inherit;font-weight:800;font-size:16px;background:var(--acc);color:var(--accT);cursor:pointer;margin-top:6px}
+#send:disabled{opacity:.6}
+#msg{margin-top:14px;font-size:14px;line-height:1.5;min-height:20px}
+#msg.err{color:var(--err)}
+.done{display:none;text-align:center;padding:30px 0}
+.done svg{width:64px;height:64px;color:var(--ok)}
+.done h2{margin:14px 0 8px;font-size:24px}
+.done p{color:var(--mut);margin:0;line-height:1.5}
+.priv{color:var(--mut);font-size:12.5px;line-height:1.5;margin-top:26px;border-top:1px solid var(--line);padding-top:16px}
+[hidden]{display:none!important}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0a0d12;--card:#12161d;--tx:#f3f1ec;--mut:#a3a9b3;--line:#262c36;--acc:#f0b23a;--accT:#0a0d12;--err:#ff8a8d;--ok:#6fd39b}
+</style></head><body><main>
+<div class="brand"><svg viewBox="0 0 200 270" aria-hidden="true"><path fill="#e0a028" d="M95 10C66 14 44 40 38 86L36 104L95 113Z"/><path fill="#c98a1c" d="M105 10C134 14 156 40 162 86L164 104L105 113Z"/><path fill="#f2b84a" d="M96 3L104 3L109 113L104 160L100 170L96 160L91 113Z"/><path fill="#e0a028" d="M35 109L90 119L90 137L75 147L49 142L35 127Z"/><path fill="#c98a1c" d="M165 109L110 119L110 137L125 147L151 142L165 127Z"/><path fill="#e0a028" d="M33 131L49 146L57 198L51 208L39 186L31 147Z"/><path fill="#c98a1c" d="M167 131L151 146L143 198L149 208L161 186L169 147Z"/><path fill="#f2b84a" d="M62 157L90 148L100 157L110 148L138 157L129 180L110 164L100 170L90 164L71 180Z"/><path fill="#e0a028" d="M59 173L76 171L81 228L68 240Z"/><path fill="#e0a028" d="M80 174L92 176L94 252L83 239Z"/><path fill="#f2b84a" d="M96 177L104 177L104 258L100 268L96 258Z"/><path fill="#c98a1c" d="M108 176L120 174L117 239L106 252Z"/><path fill="#c98a1c" d="M124 171L141 173L132 240L119 228Z"/></svg><span>RAGNAR</span></div>
+
+<section id="form">
+ <h1>Televizyonunu bağla</h1>
+ <p class="lead">Televizyonda görünen kodu ve sağlayıcının verdiği bilgileri gir. Televizyon birkaç saniye içinde kendini ayarlar.</p>
+ <div class="f"><label for="code">Televizyondaki kod</label><input id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="7" placeholder="000000"></div>
+ <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="link">Link ile</button><button role="tab" aria-selected="false" data-t="xt">Sunucu bilgileriyle</button></div>
+ <div id="t-link"><div class="f"><label for="link">Liste linki</label><input id="link" type="url" inputmode="url" autocomplete="off" placeholder="http://sunucu.com:8080/get.php?username=…"><div class="hint">Sağlayıcının verdiği M3U linkini olduğu gibi yapıştır. Linkte kullanıcı adı ve şifre varsa ayrıca girmene gerek yok.</div></div></div>
+ <div id="t-xt" hidden>
+  <div class="f"><label for="srv">Sunucu adresi</label><input id="srv" type="url" inputmode="url" autocomplete="off" placeholder="http://sunucu.com:8080"></div>
+  <div class="f"><label for="usr">Kullanıcı adı</label><input id="usr" autocomplete="off" autocapitalize="off"></div>
+  <div class="f"><label for="pwd">Şifre</label><input id="pwd" type="password" autocomplete="off"></div>
+ </div>
+ <button id="send">Televizyona gönder</button>
+ <div id="msg" role="status"></div>
+</section>
+
+<section class="done" id="done">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>
+ <h2>Gönderildi</h2><p>Televizyonun birkaç saniye içinde listeni yükleyecek. Bu sayfayı kapatabilirsin.</p>
+</section>
+
+<p class="priv">Bilgilerin yalnızca kodu gösteren televizyona iletilir ve televizyon aldığı anda sunucudan silinir. Kod 10 dakika geçerlidir ve bir kez kullanılabilir.</p>
+</main>
+<script>
+/* Supabase ayarları: TV uygulamasındaki js/config.js ile aynı değerler */
+const SB_URL='https://kuuwdpzyeovkfjoradwq.supabase.co';
+const SB_KEY='sb_publishable_M-QnplymNuUQVcbHQr0_RQ_wLh2YFOp';
+
+const $=s=>document.querySelector(s);let tab='link';
+const qc=new URLSearchParams(location.search).get('c');if(qc)$('#code').value=qc.replace(/\D/g,'').replace(/^(\d{3})(\d{0,3})/,'$1 $2').trim();
+$('#code').addEventListener('input',e=>{const d=e.target.value.replace(/\D/g,'').slice(0,6);e.target.value=d.length>3?d.slice(0,3)+' '+d.slice(3):d});
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));$('#t-link').hidden=tab!=='link';$('#t-xt').hidden=tab!=='xt'});
+const say=(t,err)=>{$('#msg').textContent=t;$('#msg').className=err?'err':''};
+$('#send').onclick=async()=>{
+ const code=$('#code').value.replace(/\D/g,'');if(code.length!==6)return say('Televizyondaki 6 haneli kodu gir.',1);
+ let a,u='',p='';
+ if(tab==='link'){a=$('#link').value.trim();if(!a)return say('Liste linkini yapıştır.',1)}
+ else{a=$('#srv').value.trim();u=$('#usr').value.trim();p=$('#pwd').value;if(!a||!u||!p)return say('Sunucu adresi, kullanıcı adı ve şifrenin üçü de gerekli.',1)}
+ if(!/^https?:\/\//i.test(a)&&!/^[\w.-]+(:\d+)?(\/|$)/.test(a))return say('Link http:// veya https:// ile başlamalı.',1);
+ if(!SB_URL||!SB_KEY)return say('Bu sayfanın Supabase ayarları yapılmamış.',1);
+ $('#send').disabled=true;say('Gönderiliyor…');
+ try{const r=await fetch(SB_URL.replace(/\/+$/,'')+'/rest/v1/rpc/ragnar_pair_fill',{method:'POST',headers:Object.assign({apikey:SB_KEY,'Content-Type':'application/json'},/^eyJ/.test(SB_KEY)?{Authorization:'Bearer '+SB_KEY}:{}),body:JSON.stringify({p_code:code,p_payload:JSON.stringify({a,u,p})})});
+  if(!r.ok)throw new Error();const ok=await r.json();
+  if(ok){$('#form').hidden=true;$('#done').style.display='block'}else{say('Bu kod bulunamadı ya da süresi doldu. Televizyondaki güncel kodu kontrol et.',1);$('#send').disabled=false}}
+ catch(e){say('Bağlantı kurulamadı. İnternetini kontrol edip tekrar dene.',1);$('#send').disabled=false}};
+</script>
+</body></html>
